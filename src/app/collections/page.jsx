@@ -247,59 +247,76 @@ function Collections() {
                   backgroundColor: isDarkMode ? '#3F4853' : '',
                   border: isDarkMode ? '1px solid #4E5762' : ''
                 }}>
-                  <div className="card-img-top overflow-hidden" style={{ height: '140px' }}>
-                    <img
-                      src={card.display_image_url}
-                      className="w-100 h-100 object-cover"
-                      alt={card.display_title}
-                    />
-                  </div>
-                  <div className="card-body d-flex flex-column" style={{
-                    color: isDarkMode ? 'white' : 'black'
-                  }}>
-                    <h5 className="card-title fw-bold mb-3 text-truncate" style={{marginTop:-5}}>
-                      {card.display_title}
-                    </h5>
-                    <div className="mb-3" style={{marginTop:-5}}>
-                      <p className="mb-1 small" style={{ color: isDarkMode ? '#cbd5e1' : '#6b7280' }}>
-                        <span className="fw-semibold">Project:</span> {card.project.project_code}
-                      </p>
-                      <p className="mb-0 small" style={{fontSize:13, color: isDarkMode ? '#cbd5e1' : '#6b7280' }}>
-                        <span className="fw-semibold">Maintainer:</span> {card.maintainer}
-                      </p>
-                    </div>
-                    <div className="d-flex gap-2 mt-auto">
-                      <Button
-                        variant="warning"
-                        size="sm"
-                        className="flex-fill"
-                        style={{ fontSize: 15, fontWeight: 500, borderRadius: 8, minWidth: 0,color:'#ffffffff' }}
-                        onClick={() => setInfoModalCard(card)}
-                        title="More Info"
-                      > <ImInfo size={18}/>
-                      </Button>
-                      {card.component_name ? (
-                        <Button
-                          variant="primary"
-                          className="flex-fill d-flex align-items-center justify-content-center"
-                          style={{ fontSize: 15, fontWeight: 500, borderRadius: 8, minWidth: 0, backgroundColor: '#1883ff', border: 'none' }}
-                          onClick={() => handleDashboardClick(card.component_name, card)}
-                        >
-                          Explore Dashboard
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="secondary"
-                          className="flex-fill d-flex align-items-center justify-content-center"
-                          style={{ fontSize: 15, fontWeight: 500, borderRadius: 8, minWidth: 0, backgroundColor: isDarkMode ? '#4E5762' : '', color: isDarkMode ? 'white' : 'inherit', border: 'none' }}
-                          disabled
-                        >
-                          No Dashboard Available
-                        </Button>
-                      )}
-                    </div>
-  <DashboardInfoModal show={!!infoModalCard} onHide={() => setInfoModalCard(null)} card={infoModalCard} />
-                  </div>
+                  {(() => {
+                    const title = String(card.display_title || '');
+                    const isLongTitle = title.length > 28;
+                    return (
+                      <>
+                        <div className="card-img-top overflow-hidden" style={{ height: isLongTitle ? '95px' : '140px' }}>
+                          <img
+                            src={card.display_image_url}
+                            className="w-100 h-100 object-cover"
+                            alt={card.display_title}
+                          />
+                        </div>
+                        <div className="card-body d-flex flex-column" style={{
+                          color: isDarkMode ? 'white' : 'black'
+                        }}>
+                          <h5
+                            className="card-title fw-bold mb-3"
+                            style={{
+                              marginTop: -5,
+                              whiteSpace: 'normal',
+                              overflow: 'visible',
+                              textOverflow: 'unset',
+                              wordBreak: 'break-word'
+                            }}
+                          >
+                            {card.display_title}
+                          </h5>
+                          <div className="mb-3" style={{marginTop:-5}}>
+                            <p className="mb-1 small" style={{ color: isDarkMode ? '#cbd5e1' : '#6b7280' }}>
+                              <span className="fw-semibold">Project:</span> {card.project.project_code}
+                            </p>
+                            <p className="mb-0 small" style={{fontSize:13, color: isDarkMode ? '#cbd5e1' : '#6b7280' }}>
+                              <span className="fw-semibold">Maintainer:</span> {card.maintainer}
+                            </p>
+                          </div>
+                          <div className="d-flex gap-2 mt-auto">
+                            <Button
+                              variant="warning"
+                              size="sm"
+                              className="flex-fill"
+                              style={{ fontSize: 15, fontWeight: 500, borderRadius: 8, minWidth: 0,color:'#ffffffff' }}
+                              onClick={() => setInfoModalCard(card)}
+                              title="More Info"
+                            > <ImInfo size={18}/>
+                            </Button>
+                            {card.component_name ? (
+                              <Button
+                                variant="primary"
+                                className="flex-fill d-flex align-items-center justify-content-center"
+                                style={{ fontSize: 15, fontWeight: 500, borderRadius: 8, minWidth: 0, backgroundColor: '#1883ff', border: 'none' }}
+                                onClick={() => handleDashboardClick(card.component_name, card)}
+                              >
+                                Explore Dashboard
+                              </Button>
+                            ) : (
+                              <Button
+                                variant="secondary"
+                                className="flex-fill d-flex align-items-center justify-content-center"
+                                style={{ fontSize: 15, fontWeight: 500, borderRadius: 8, minWidth: 0, backgroundColor: isDarkMode ? '#4E5762' : '', color: isDarkMode ? 'white' : 'inherit', border: 'none' }}
+                                disabled
+                              >
+                                No Dashboard Available
+                              </Button>
+                            )}
+                          </div>
+                          <DashboardInfoModal show={!!infoModalCard} onHide={() => setInfoModalCard(null)} card={infoModalCard} />
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
               </div>
             ))}

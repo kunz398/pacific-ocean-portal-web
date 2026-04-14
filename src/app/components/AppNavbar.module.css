@@ -106,6 +106,15 @@ html.light-mode .dropdownItem:hover:not(.dropdownItemActive) {
   width: 70px;
   margin-left: -2px;
 }
+.flagImage2 {
+  height: 48px;
+  width: 80px;
+  margin-left: -2px;
+}
+
+.flagImagePrefix {
+  margin-right: 6px;
+}
 
 .logoContainer {
   width: 38px;

@@ -196,10 +196,11 @@ return (
                     For <strong>High Performance</strong> and fast loading on <strong>Low bandwidth Connections</strong>, it is recommended to use the <strong>SPC OSM</strong> basemap.
                 </div>
             </div>
-            <p className="custom-section-label">Countries supported:</p>
+            {/*<p className="custom-section-label">Countries supported:</p>
             <div className="logos d-flex flex-wrap justify-content-center custom-country-logos">
                 <img className="img-fluid" src="/COSSPac_country_territories.png" alt="supported-services" width="100%" />
             </div>
+            */}
             <p className="custom-section-label" style={{paddingTop:5}}>Developed & Maintained By:</p>
             <div className="logos d-flex flex-wrap justify-content-center custom-org-logo">
                 <img

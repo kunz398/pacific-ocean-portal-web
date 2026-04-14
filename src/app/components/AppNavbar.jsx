@@ -27,6 +27,10 @@ export default function AppNavbar({ logoutButtonSize = 'sm' }) {
   const [flagSrc, setFlagSrc] = useState(null);
   const authed = !!isLoggedin;
 
+  const showFranceFlag =
+    typeof flagSrc === "string" &&
+    (flagSrc.includes("/NCL") || flagSrc.includes("/PYF") || flagSrc.includes("NCL") || flagSrc.includes("PYF"));
+
   const links = [
     { href: "/explorer", label: "Explorer" },
     { href: "/collections", label: "Collections" },
@@ -194,7 +198,17 @@ export default function AppNavbar({ logoutButtonSize = 'sm' }) {
               <Navbar.Brand as={Link} href="/" className={styles.navbarBrand}>
                 {flagSrc && (
                   <span className={styles.flagContainer}>
+                    {showFranceFlag && (
+                      <img
+                        src="/flags/FRA.png"
+                        className={`${styles.flagImage2} ${styles.flagImagePrefix}`}
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    )}
                     <img src={flagSrc} className={styles.flagImage} onError={(e) => { e.currentTarget.style.display='none'; }} />
+                
                   </span>
                 )}
                 <span className={styles.logoContainer}>
